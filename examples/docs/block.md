@@ -1,10 +1,12 @@
 # BlockView 基础展示块
 ----
 ### 基础用法
+组件的宽高由父元素决定
+
 ```mask``` 参数的```video```、```card```、```image```值分别对应```maskVideo```、```maskCard```、```maskImage```三个参数
 
 <div class="demo-block">
-  <div>
+  <div style="width:160px;height:148px">
     <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="card" :mask-card="maskCard">
     </b-block>
   </div>
@@ -43,6 +45,10 @@
       getMaskData(){
         setTimeout(()=>{
           this.maskVideo = {
+            img_x_len:10,
+            img_x_size:160,
+            img_y_len:10,
+            img_y_size:90,
             images: ['/static/38008861.jpg'],
             index: [0,0,28,40,54,64,75,89,99,110,120,131,141,151,162,173,183,193,203,214,224,235,246,257,267,277,287,303,309,346,358,369,386,397,403,427,438,448,459,469,480,490,501,511,521,531,543,553,567,574,585,595,605,615,650,663,674,686,699,710,725,737,747,755,768,778,785],
             barrage: ["可以的","辣鸡游戏32号就关服了","讲个笑话，四月番","起立！","5月5日马克思诞辰","你指尖跃动的电光，是我此生不变的信仰唯我超电磁炮永世长存","敬礼！！！","嗷嗷","姐姐大人生日快乐","110吗？还是那个人！","敬礼！","傲嗷","B站很多新用户的涌入，过去的好视频翻出来炒炒冷饭增加下粘度还是可取的","zzzzzzzz","zzzzzzzzzzzzzzzzz","恭喜忽悠 表白崔崔","敬礼！！！","俺妹的bgm果然好听","敬礼！！！敬礼！！！","啧"]
@@ -57,7 +63,7 @@
 ```html
 <template>
 <div class="demo-block">
-  <div>
+  <div style="width:160px;height:148px">
     <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="'card'" :mask-card="maskCard">
     </b-block>
   </div>
@@ -97,7 +103,7 @@
 :::
 
 <div class="demo-block">
-  <div>
+  <div style="width:160px;height:148px">
     <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="video" :mask-video="maskVideo" @mask-hover="getMaskData">
     </b-block>
   </div>
@@ -107,7 +113,7 @@
 ```html
 <template>
 <div class="demo-block">
-  <div>
+  <div style="width:160px;height:148px">
     <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="video" :mask-video="maskVideo" @mask-hover="getMaskData">
     </b-block>
   </div>
@@ -140,6 +146,10 @@
       getMaskData(){
         setTimeout(()=>{
           this.maskVideo = {
+            img_x_len:10,
+            img_x_size:160,
+            img_y_len:10,
+            img_y_size:90,
             images: ['/static/38008861.jpg','/38160767-1.jpg'],
             index: [0,0,28,40,54,64,75,89,99,110,120,131,141,151,162,173,183,193,203,214,224,235,246,257,267,277,287,303,309,346,358,369,386,397,403,427,438,448,459,469,480,490,501,511,521,531,543,553,567,574,585,595,605,615,650,663,674,686,699,710,725,737,747,755,768,778,785,798,804,814,825,835,846,856,868,877,889,898,909,919,933,940,955,965,987,997,1020,1030,1035,1042,1052,1061,1066,1073,1079,1088,1096,1103,1109,1118,1147,1171,1206,1255,1297,1339],
             barrage: ["可以的","辣鸡游戏32号就关服了","讲个笑话，四月番","起立！","5月5日马克思诞辰","你指尖跃动的电光，是我此生不变的信仰唯我超电磁炮永世长存","敬礼！！！","嗷嗷","姐姐大人生日快乐","110吗？还是那个人！","敬礼！","傲嗷","B站很多新用户的涌入，过去的好视频翻出来炒炒冷饭增加下粘度还是可取的","zzzzzzzz","zzzzzzzzzzzzzzzzz","恭喜忽悠 表白崔崔","敬礼！！！","俺妹的bgm果然好听","敬礼！！！敬礼！！！","啧"]
@@ -164,7 +174,7 @@
 | desc | 底部追加信息 | Object | {desc.leftKeyword:String, desc.rightKeyword:String}  | — |
 | mask | 是否有遮罩&&遮罩种类 | String | card/video/image  | — |
 | maskCard | 卡片遮罩 | Object |  {maskCard.title:String, maskCard.author:String,  maskCard.play:String} | — |
-| maskVideo | 视频遮罩 | Object | {maskVideo.images:Array, maskVideo.index:Array, maskVideo.barrage:Array}  | — |
+| maskVideo | 视频遮罩 | Object | {maskVideo.img_x_len:Number,maskVideo.img_x_size:Number,maskVideo.img_y_size:Number,maskVideo.img_y_len:Number,maskVideo.images:Array, maskVideo.index:Array, maskVideo.barrage:Array}  | — |
 | maskCard | 是否有遮罩&&遮罩种类 | String | card/video/image  | — |
 | videoTime | 视频时长(单位:秒) | Number |  — | — |
 | link | 跳转链接 | String | — | — |

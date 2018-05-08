@@ -5,9 +5,10 @@
       @mouseenter="createBarrage"
       @mousemove="startShow"
       @mouseout="endShow"
+      
     >
       <a :href="link">
-        <div class="pic" :style="{'backgroundImage':`url(${lazyImg})`}">
+        <div class="pic" ref="maskBox" :style="{'backgroundImage':`url(${lazyImg})`}">
           <img  :src="image" alt="">
           <div class="card-mask" v-if="mask && mask === 'card'">
               <p v-if="maskCard" class="title" v-html="maskCard.title">
@@ -24,6 +25,9 @@
             <div class="video-mask"></div>
             <span class="time">{{formatTime(time)}}</span>  
             <div class="barrage-mode"></div>
+          </div>
+          <div class="image-mask" v-else="mask && mask === 'image'">
+             
           </div>
         </div>
         <p v-if="bottomTitle" class="b" :style="desc?{'height':'20px'}:null">
@@ -45,7 +49,6 @@ export default {
   props: {
     lazyImg: {
       type: String,
-      default: "/static/lazy.png"
     },
     image: {
       type: String,
@@ -64,13 +67,9 @@ export default {
     },
     maskVideo: {
       type: Object,
-      default(){
-        return null
-      }
     },
     videoTime: {
       type: Number,
-      default: 440
     },
     link: {
       type: String,
@@ -86,6 +85,8 @@ export default {
       barrageMove: null,
       barrageEls: [],
       barrageNum: 0,
+      boxWidth:0,
+      boxHeight:0,
     };
   },
   watch: {
@@ -94,14 +95,14 @@ export default {
       this.createBarrage()
     }
   },
-  created() {
-    // this.time = this.maskVideo.index[this.maskVideo.index.length-1]
-    
+  mounted(){
+    this.boxWidth = this.$refs.maskBox.offsetWidth
   },
   methods:{
     startShow(e){
+      this.boxHeight = this.$refs.maskBox.offsetHeight
       if(!this.mask === 'video' || !this.maskVideo) return
-      this.progressBarWidth = (e.clientX - e.currentTarget.offsetLeft )/160*100;
+      this.progressBarWidth = (e.clientX - e.currentTarget.offsetLeft)/this.boxWidth*100
       let w = this.progressBarWidth/100*this.maskVideo.index[this.maskVideo.index.length-1],n,weak=5
       this.maskVideo.index.forEach((v,i,arr)=>{
         weak =arr[i+1] - v;
@@ -109,10 +110,11 @@ export default {
           n = i;
         }
       })
-      let ns = n%100
-      this.videoImage = this.maskVideo.images[~~(n/100)]
-      if(ns<10) this.videoPos = `${-ns*160}px 0`
-      else this.videoPos = `${-ns%10*160}px ${-(~~(ns/10))*90}px`
+      let total = this.maskVideo.img_x_len*this.maskVideo.img_y_len;
+      let ns = n%total
+      this.videoImage = this.maskVideo.images[~~(n/total)]
+      if(ns<this.maskVideo.img_x_len) this.videoPos = `${-ns*this.maskVideo.img_x_size}px 0`
+      else this.videoPos = `${-ns%this.maskVideo.img_x_len*this.maskVideo.img_x_size}px ${-(~~(ns/this.maskVideo.img_y_len))*this.maskVideo.img_y_size}px`
     },
     createBarrage(e){
       this.$emit('mask-hover')
@@ -125,7 +127,6 @@ export default {
         if(t===5) t = 0
       },1000)
     },
-
     createEle(){
       if(this.barrageNum>this.maskVideo.barrage.length-1) this.barrageNum = 0
       let b = document.createElement('div')
@@ -133,7 +134,7 @@ export default {
       b.style.color = '#fff'
       b.style.position = 'absolute'
       b.style.left = '100%'
-      b.style.top = Math.random()*20+'px'
+      b.style.top = Math.random()*40+'px'
       b.style.whiteSpace = 'pre'
       b.style.textShadow = '1px 1px 2px #001'
       b.style.transition = 'left 5s linear'
@@ -178,11 +179,12 @@ export default {
 }
 .block {
   position: relative;
-  width: 160px;
-  height: 148px;
+  width: 100%;
+  height: 100%;
   font-size: 12px;
   overflow: hidden;
 }
+
 .block:hover .b {
   color: #00a1d6;
   height: 40px !important;
@@ -193,6 +195,10 @@ export default {
 }
 .block:hover .card-mask .play,.block:hover .card-mask .author,.block:hover .video-mask{
   opacity: 1;
+}
+image{
+  border: 0;
+  outline: 0;
 }
 .tit {
   display: flex;
@@ -209,14 +215,13 @@ export default {
 }
 .pic {
   position: relative;
-  width: 160px;
-  height: 100px;
+  width: 100%;
+  height: calc(100% - 48px);
   overflow: hidden;
   border-radius: 4px;
   font-size: 12px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 70% 80%;
 }
 .pic img {
   width: 100%;
@@ -249,13 +254,14 @@ export default {
     transition: opacity .3s;
 }
 .card-mask {
+  box-sizing: border-box;
   position: absolute;
-  width: 150px;
+  width: 100%;
   font-size: 12px;
   line-height: 20px;
   padding: 10px 5px;
   overflow: hidden;
-  top: 68px;
+  top: calc(100% - 32px);
   height: 100%;
   background: linear-gradient(transparent,rgba(0,0,0,.1) 20%,rgba(0,0,0,.2) 35%,rgba(0,0,0,.6) 65%,rgba(0,0,0,.9));
 }
@@ -292,10 +298,9 @@ export default {
     position: absolute;
     left: 0;
     top: 7px;
-    height: 98px;
+    height: calc(100% - 7px);
     width: 100%;
     margin-top: 2px;
-    background-position: -640px -720px;
 }
 .video-mask .progress-bar{
     position: absolute;
