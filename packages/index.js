@@ -2,6 +2,7 @@
  * @author xyk
  * Date: 18/3/5
  */
+
 import BBlock from './block/index'
 const components = [
   BBlock,

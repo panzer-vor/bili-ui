@@ -23,7 +23,8 @@
         maskCard:null,
         maskVideo:null,
         card:'card',
-        video:'video'
+        video:'video',
+        image:'image',
       }
     },
     mounted(){
