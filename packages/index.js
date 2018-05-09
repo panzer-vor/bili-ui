@@ -4,8 +4,10 @@
  */
 
 import BBlock from './block/index'
+import BNavList from './navList/index'
 const components = [
   BBlock,
+  BNavList,
 ]
 
 const install = function(Vue) {
@@ -19,5 +21,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  BBlock,
+  ...components,
 }
