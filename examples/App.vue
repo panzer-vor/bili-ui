@@ -13,7 +13,6 @@
 
 <script>
   import SlideBar from './components/SlideBar'
-
   export default {
     name: 'App',
     data() {

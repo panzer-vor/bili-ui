@@ -4,8 +4,7 @@
       :style="!bottomTitle?{'height':'100px'}:null"
       @mouseenter="createBarrage"
       @mousemove="startShow"
-      @mouseout="endShow"
-      
+      @mouseout="endShow"  
     >
       <a :href="link">
         <div class="pic" ref="maskBox" :style="{'backgroundImage':`url(${lazyImg})`}">
@@ -27,7 +26,7 @@
             <div class="barrage-mode"></div>
           </div>
           <div class="image-mask" v-else="mask && mask === 'image'">
-             
+             <img :src="maskImage" alt="">
           </div>
         </div>
         <p v-if="bottomTitle" class="b" :style="desc?{'height':'20px'}:null">
@@ -67,6 +66,9 @@ export default {
     },
     maskVideo: {
       type: Object,
+    },
+    maskImage: {
+      type: String,
     },
     videoTime: {
       type: Number,
@@ -152,8 +154,6 @@ export default {
         barrageParent.removeChild(barrageParent.children[i])
         this.barrageEls.unshift()
       }
-     
- 
     },
     formatTime(time){
       let h=0,m=0,s=0
@@ -193,7 +193,7 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   top: 0;
 }
-.block:hover .card-mask .play,.block:hover .card-mask .author,.block:hover .video-mask{
+.block:hover .card-mask .play,.block:hover .card-mask .author,.block:hover .video-mask,.block:hover .image-mask{
   opacity: 1;
 }
 image{
@@ -352,5 +352,16 @@ image{
     text-shadow: 1px 1px 2px #001;
     transition: left 5s linear;
 }
-
+.image-mask{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.image-mask img{
+  width: 100%;
+  height: 100%;
+}
 </style>
