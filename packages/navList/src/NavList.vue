@@ -1,7 +1,16 @@
 <template>
   <div class="nav-list" ref="navList">
-    <ul>
-      <li v-for="(item,index) in list" @click="sideLink(item.id,index)" :class="index===choseIndex?'on':null">{{item.name}}</li>
+    <ul @mousemove="moveDrop">
+      <li 
+        v-for="(item,index) in list"
+        :key="index" 
+        :data="item.order"
+        :style="{order:item.order}"        
+        @click="sideLink(item.id,index)" 
+        :class="index===choseIndex?'on':null"
+        @mousedown="startDrop($event,item.order,index)"
+        @mouseup="endDrop"
+      >{{item.name}}</li>
     </ul>
   </div>
 </template>
@@ -18,15 +27,18 @@
           return [
             {
               id: 'a',
-              name: '1'
+              name: 'red',
+              order: 0
             },
             {
+              order: 1,
               id: 'b',
-              name: '2'
+              name: 'blue'
             },
             {
+              order: 2,
               id: 'c',
-              name: '3'
+              name: 'yellow'
             },
           ]
         }
@@ -36,9 +48,19 @@
       return {
         elementMap: null,
         choseIndex: -1,
+        elTop: 0,
+        isDrop: false,
+        moveEl: null,
+        emptyEl: null,
+        moveOrder: 0,
+        moveIndex: null,
+        startOrder: 0,
       }
     },
     mounted() {
+      for(let i in this.list){
+        this.$set(this.list[i],'order',this.list[i].order)
+      }
       this.onScroll()
       if (this.pos) {
         this.$refs.navList.style.top = pos.top + 'px'
@@ -51,27 +73,72 @@
         obj[v.id]['bottom'] = this.offsetTop(document.querySelector(`#${v.id}`)) + document.querySelector(`#${v.id}`).offsetHeight
       })
       this.elementMap = obj;
-
     },
     methods: {
+      startDrop(e,order,inx){
+        this.createEmptyEl(order)
+        e.currentTarget.style.position = "absolute"
+        this.elTop =  e.clientY - this.offsetTop(document.querySelector('.nav-list ul')) - e.currentTarget.offsetHeight/2
+        e.currentTarget.style.top = this.elTop + "px"
+        this.isDrop = true
+        this.moveEl = e.currentTarget
+        this.moveOrder = order
+        this.moveIndex = inx
+        this.startOrder = order
+      },
+      createEmptyEl(order){
+        this.emptyEl = document.createElement('li')
+        document.querySelector('.nav-list ul').appendChild(this.emptyEl)
+        this.emptyEl.style = order
+        this.emptyEl.style.height = "32px"
+      },
+      moveDrop(e){
+        if(this.isDrop){
+          this.elTop = e.clientY - this.offsetTop(e.currentTarget) - this.moveEl.offsetHeight/2
+          this.moveEl.style.top = this.elTop + "px"
+          let index = Math.round(this.elTop/this.moveEl.offsetHeight)
+          this.moveOrder = index
+          this.emptyEl.style.order = this.moveOrder
+          for(let i=0;i<this.list.length;i++){
+            if(this.list[i].order === index){
+              this.list[i].order = this.list[this.moveIndex].order
+            }
+          } 
+          this.list[this.moveIndex].order = this.moveOrder
+        }
+      },
+      endDrop(e){
+        this.isDrop = false
+        this.moveEl.style.position = "static"
+        this.moveEl.style.order = this.moveOrder
+        document.querySelector('.nav-list ul').removeChild(this.emptyEl)
+        let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,beforeNum = this.list.length-1,id = '',index = -1
+        for(let i=0;i<this.list.length;i++){
+          if(this.list[i].order === this.list[this.moveIndex].order){
+            beforeNum = this.list[i].order  //移动的元素
+            id = this.list[i].id  //移动的元素
+          }
+        }
+        parent.insertBefore(document.querySelector(`#${this.list[this.moveIndex].id}`),document.querySelector(`#${this.list[beforeNum].id}`))
+        parent.insertBefore(document.querySelector(`#${this.list[beforeNum].id}`),parent.childNodes[this.startOrder]) 
+      },
       sideLink(id, index) {
         this.toEl(2, this.elementMap[id]['top'])
         this.choseIndex = index
-
       },
       onScroll(){
         const doc = document.body.scrollTop ? document.body : document.documentElement
         let scrollNow = doc.scrollTop
         window.addEventListener('scroll', this.debounce(this.isInside,100),false)
-       
       },
       isInside(){
         const doc = document.body.scrollTop ? document.body : document.documentElement
-        let s = doc.scrollTop
+        let s = doc.scrollTop,index = 0
         for(let i in this.elementMap){
-          if(s>this.elementMap[i].top && s<this.elementMap[i].bottom){
-            console.log(i)
+          if(s>this.elementMap[i].top-20 && s<this.elementMap[i].bottom -20){
+            this.choseIndex = index
           }
+          index++
         }
       },
       debounce(func,wait,immediate){
@@ -80,9 +147,6 @@
           clearTimeout(timeout)
           timeout = setTimeout(func,wait)
         }
-      },
-      addClass(){
-        
       },
       toEl(rate, scrollTop) {
         const doc = document.body.scrollTop ? document.body : document.documentElement
@@ -94,9 +158,9 @@
             return;
           }
           doc.scrollTop = scrollNow
-          requestAnimationFrame(top);
-        };
-        top();
+          requestAnimationFrame(top)
+        }
+        top()
       },
       offsetTop(ele) {
         let top = 0
@@ -107,7 +171,6 @@
         return top
       }
     }
-
   }
 </script>
 
@@ -135,6 +198,8 @@
     border: 1px solid #e5e9ef;
     overflow: hidden;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
   }
 
   .nav-list ul li {
