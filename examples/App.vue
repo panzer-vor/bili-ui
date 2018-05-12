@@ -128,6 +128,9 @@
     color: #666;
     padding: 5px;
     border-top: 1px solid #00a1d6;
+    width: 200px;
+    max-width: 30%;
+    
   }
 
   @media screen and (max-width:780px) {

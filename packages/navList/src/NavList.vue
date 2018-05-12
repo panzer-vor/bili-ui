@@ -10,6 +10,7 @@
         :class="index===choseIndex?'on':null"
         @mousedown="startDrop($event,item.order,index)"
         @mouseup="endDrop"
+        @mouseout="endDrop"
       >{{item.name}}</li>
     </ul>
   </div>
@@ -54,7 +55,6 @@
         emptyEl: null,
         moveOrder: 0,
         moveIndex: null,
-        startOrder: 0,
       }
     },
     mounted() {
@@ -66,15 +66,18 @@
         this.$refs.navList.style.top = pos.top + 'px'
         this.$refs.navList.style.right = pos.right + 'px'
       }
-      let obj = {}
-      this.list.forEach(v => {
-        obj[v.id] = {}
-        obj[v.id]['top'] = this.offsetTop(document.querySelector(`#${v.id}`))
-        obj[v.id]['bottom'] = this.offsetTop(document.querySelector(`#${v.id}`)) + document.querySelector(`#${v.id}`).offsetHeight
-      })
-      this.elementMap = obj;
+      this.getElsTop()
     },
     methods: {
+      getElsTop(){
+        let obj = {}
+        this.list.forEach(v => {
+          obj[v.id] = {}
+          obj[v.id]['top'] = this.offsetTop(document.querySelector(`#${v.id}`))
+          obj[v.id]['bottom'] = this.offsetTop(document.querySelector(`#${v.id}`)) + document.querySelector(`#${v.id}`).offsetHeight
+        })
+        this.elementMap = obj;
+      },
       startDrop(e,order,inx){
         this.createEmptyEl(order)
         e.currentTarget.style.position = "absolute"
@@ -84,7 +87,6 @@
         this.moveEl = e.currentTarget
         this.moveOrder = order
         this.moveIndex = inx
-        this.startOrder = order
       },
       createEmptyEl(order){
         this.emptyEl = document.createElement('li')
@@ -112,16 +114,20 @@
         this.moveEl.style.position = "static"
         this.moveEl.style.order = this.moveOrder
         document.querySelector('.nav-list ul').removeChild(this.emptyEl)
-        let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,beforeNum = this.list.length-1,id = '',index = -1
-        for(let i=0;i<this.list.length;i++){
-          if(this.list[i].order === this.list[this.moveIndex].order){
-            beforeNum = this.list[i].order  //移动的元素
-            id = this.list[i].id  //移动的元素
+
+        let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,childrens = parent.children
+
+        for(let i = 0;i<childrens.length;i++){
+          for(let j in this.list){
+            if(childrens[i].getAttribute("id")===this.list[j].id){
+              childrens[i].style.order = this.list[j].order
+            }
           }
         }
-        parent.insertBefore(document.querySelector(`#${this.list[this.moveIndex].id}`),document.querySelector(`#${this.list[beforeNum].id}`))
-        parent.insertBefore(document.querySelector(`#${this.list[beforeNum].id}`),parent.childNodes[this.startOrder]) 
+        this.getElsTop()
+        
       },
+    
       sideLink(id, index) {
         this.toEl(2, this.elementMap[id]['top'])
         this.choseIndex = index

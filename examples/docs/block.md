@@ -221,8 +221,10 @@
 | bottomTitle | 底部标题 | String | — | — |
 | desc | 底部追加信息 | Object | {desc.leftKeyword:String, desc.rightKeyword:String}  | — |
 | mask | 是否有遮罩&&遮罩种类 | String | card/video/image  | — |
-| maskCard | 卡片遮罩 | Object |  {maskCard.title:String, maskCard.author:String,  maskCard.play:String} | — |
-| maskVideo | 视频遮罩 | Object | {maskVideo.img_x_len:Number,maskVideo.img_x_size:Number,maskVideo.img_y_size:Number,maskVideo.img_y_len:Number,maskVideo.images:Array, maskVideo.index:Array, maskVideo.barrage:Array}  | — |
+| maskCard | 卡片遮罩 | Object |  {maskCard.title:String, maskCard.author:String, maskCard.play:String} | — |
+| maskVideo | 视频遮罩 | Object | {maskVideo.img_x_len:Number,maskVideo.img_x_size:Number,  | — |
+|  |  |  | maskVideo.img_y_size:Number,maskVideo.img_y_len:Number, | — |
+|  |  |  | maskVideo.images:Array, maskVideo.index:Array, maskVideo.barrage:Array} | — |
 | maskCard | 是否有遮罩&&遮罩种类 | String | card/video/image  | — |
 | videoTime | 视频时长(单位:秒) | Number |  — | — |
 | link | 跳转链接 | String | — | — |

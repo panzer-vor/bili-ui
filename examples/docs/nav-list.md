@@ -7,7 +7,7 @@
 
 
 <b-nav-list></b-nav-list>
-<div style="margin-top:100px">
+<div style="margin-top:100px;display:flex;flex-direction:column">
 <div id="a" style="width:100%;height:100vh;background:red;opacity:.3"></div>
 <div id="b" style="width:100%;height:100vh;background:blue;opacity:.3"></div>
 <div id="c" style="width:100%;height:100vh;background:yellow;opacity:.3"></div>
