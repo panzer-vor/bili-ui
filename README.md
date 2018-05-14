@@ -1,27 +1,28 @@
-# xxx
+# bili-ui
 
-> vue2.x UI components 
+> vue2.x UI components  
+> 模仿[B站](https://www.bilibili.com/)UI的vue组件库 [演示地址](https://vv-ui.github.io/VV-UI)
 
-## Build Setup
+## 安装
 
-``` bash
-# install dependencies
-npm install
+- yarn
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+```bash
+yarn add biliui
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- npm 
+
+```bash
+npm install biliui --save
+```
+
+## 使用
+
+```js
+import BiliUI from 'biliui' // 引入组件库
+
+Vue.use(BiliUI)
+```
+
+

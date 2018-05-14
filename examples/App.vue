@@ -22,7 +22,6 @@
     },
     watch: {
       $route() {
-        console.log(this.$route)
         this.isIndex = this.$route.name === 'index'
       }
     },

@@ -62,7 +62,6 @@
   }
 </script>
 
-c
 
 <div class="demo-block">
   <div style="width:160px;height:148px">

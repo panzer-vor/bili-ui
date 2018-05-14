@@ -6,8 +6,8 @@
     </div>
     <div class="separate-panel">
       <div class="about">
-        <router-link to="/guid">开始使用</router-link>
-        <a target="_blank" class="btn-github" href="https://github.com/VV-UI/VV-UI">GitHub</a>
+        <router-link to="/block">开始使用</router-link>
+        <a target="_blank" class="btn-github" href="https://github.com/xyk0279/bili-ui">GitHub</a>
       </div>
     </div>
   </div>
