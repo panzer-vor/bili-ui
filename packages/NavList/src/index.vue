@@ -1,11 +1,13 @@
 <template>
-  <div class="nav-list" ref="navList">
+  <div class="nav-list" ref="navList" :style="styles">
     <ul @mousemove="moveDrop">
       <li 
         v-for="(item,index) in list"
         :key="index" 
         :data="item.order"
-        :style="{order:item.order}"        
+        :style="{
+          order:item.order,
+        }"        
         @click="sideLink(item.id,index)" 
         :class="index===choseIndex?'on':null"
         @mousedown="startDrop($event,item.order,index)"
@@ -19,30 +21,11 @@
   export default {
     name: 'BNavList',
     props: {
-      pos: {
+      styles:{
         type: Object,
       },
       list: {
         type: Array,
-        default() {
-          return [
-            {
-              id: 'a',
-              name: 'red',
-              order: 0
-            },
-            {
-              order: 1,
-              id: 'b',
-              name: 'blue'
-            },
-            {
-              order: 2,
-              id: 'c',
-              name: 'yellow'
-            },
-          ]
-        }
       },
     },
     data() {
@@ -62,10 +45,6 @@
         this.$set(this.list[i],'order',this.list[i].order)
       }
       this.onScroll()
-      if (this.pos) {
-        this.$refs.navList.style.top = pos.top + 'px'
-        this.$refs.navList.style.right = pos.right + 'px'
-      }
       this.getElsTop()
     },
     methods: {
@@ -190,9 +169,6 @@
   .nav-list {
     position: fixed;
     z-index: 10;
-    left: 50%;
-    top: 232px;
-    margin-left: 590px;
     -webkit-transition: top .3s;
     -o-transition: top .3s;
     transition: top .3s;

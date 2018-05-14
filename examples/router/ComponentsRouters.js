@@ -10,5 +10,11 @@ export default [
     meta: {
       desc: '侧边浮动导航'
     }
+  },
+  {
+    name:'icon',
+    meta: {
+      desc: 'SVG图标'
+    }
   }
 ]

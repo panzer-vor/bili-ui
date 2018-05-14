@@ -3,11 +3,14 @@
  * Date: 18/3/5
  */
 
-import BBlock from './block/index'
-import BNavList from './navList/index'
+import BBlock from './Block/index'
+import BNavList from './NavList/index'
+import BIcon from './Icon/index'
+
 const components = [
   BBlock,
   BNavList,
+  BIcon,
 ]
 
 const install = function(Vue) {

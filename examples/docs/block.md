@@ -62,48 +62,7 @@
   }
 </script>
 
-::: demo
-```html
-<template>
-<div class="demo-block">
-  <div style="width:160px;height:148px">
-    <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="'card'" :mask-card="maskCard">
-    </b-block>
-  </div>
-</div>
-<template>
-```
-```javascript
-  //事例用定时器代替异步请求
-<script>
-  export default {
-    data(){
-      return {
-        image:"",
-        bottomTitle:"",
-        desc:null,
-        maskCard:null,
-      }
-    },
-    mounted(){
-      setTimeout(()=>{
-        this.image = '/static/block-simple.jpg'
-        this.bottomTitle = '鼠标移入后是视频画面浏览效果'
-        this.desc = {
-          leftKeyword:'我是左部信息',
-          rightKeyword:'我是右部信息'
-        }
-        this.maskCard = {
-          title: '此处为标题',
-          author: '作者',
-          play: '杂项'
-        }
-      },500)
-    },
-  }
-</script>
-```
-:::
+c
 
 <div class="demo-block">
   <div style="width:160px;height:148px">
