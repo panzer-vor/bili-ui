@@ -75,7 +75,10 @@
     color: #2c3e;
   }
   .demo-block{
-    margin-bottom: 16px;
+    border: 1px solid #eee;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 16px 30px;
   }
   .hljs-string {
     color: rgb(78, 50, 205);
@@ -131,7 +134,9 @@
     max-width: 30%;
     
   }
-
+  section a{
+    color: #00a1d6;
+  }
   @media screen and (max-width:780px) {
     .slide-wrapper {
       transform: translateX(-256px);

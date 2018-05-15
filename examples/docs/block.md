@@ -12,6 +12,48 @@
   </div>
 </div>
 
+::: demo
+```html
+<template>
+<div class="demo-block">
+  <div style="width:160px;height:148px">
+    <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="card" :mask-card="maskCard" :lazyImg="'/static/lazy.png'">
+    </b-block>
+  </div>
+</div>
+<template>
+```
+```javascript
+  //事例用定时器代替异步请求
+<script>
+  export default {
+    data(){
+      return {
+        image:"",
+        bottomTitle:"",
+        desc:null,
+        
+      }
+    },
+    mounted(){
+      setTimeout(()=>{
+        this.image = '/static/block-simple.jpg'
+        this.bottomTitle = '我是底部标题部分'
+        this.desc = {
+          leftKeyword:'我是左部信息',
+          rightKeyword:'我是右部信息'
+        }
+        this.maskCard = {
+          title: '此处为标题',
+          author: '作者',
+          play: '杂项'
+        }
+      },500)
+    },
+  }
+</script>
+```
+:::
 
 <script>
   export default {

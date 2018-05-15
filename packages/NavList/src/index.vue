@@ -1,5 +1,16 @@
 <template>
   <div class="nav-list" ref="navList" :style="styles">
+    <transition name="fade">
+      <div class="b-nav-mask" v-show="showMask" @click.stop="showMask=!showMask"></div>
+      <div class="b-nav-bg" v-show="showMask">
+          <slot></slot>
+      </div>
+    </transition>
+    <transition name="fade">
+        <div class="b-nav-bg" v-show="showMask">
+            <slot></slot>
+        </div>
+      </transition>
     <ul @mousemove="moveDrop">
       <li 
         v-for="(item,index) in list"
@@ -15,6 +26,10 @@
         @mouseout="endDrop"
       >{{item.name}}</li>
     </ul>
+    <div class="b-sort-wrapper" @click="showMask=!showMask">
+      <b-icon value="sort" klass="sort-icon"></b-icon>
+      排序
+    </div>
   </div>
 </template>
 <script>
@@ -38,6 +53,7 @@
         emptyEl: null,
         moveOrder: 0,
         moveIndex: null,
+        showMask:false,
       }
     },
     mounted() {
@@ -58,14 +74,16 @@
         this.elementMap = obj;
       },
       startDrop(e,order,inx){
-        this.createEmptyEl(order)
-        e.currentTarget.style.position = "absolute"
-        this.elTop =  e.clientY - this.offsetTop(document.querySelector('.nav-list ul')) - e.currentTarget.offsetHeight/2
-        e.currentTarget.style.top = this.elTop + "px"
-        this.isDrop = true
-        this.moveEl = e.currentTarget
-        this.moveOrder = order
-        this.moveIndex = inx
+        if(this.showMask){
+          this.createEmptyEl(order)
+          e.currentTarget.style.position = "absolute"
+          this.elTop =  e.clientY - this.offsetTop(document.querySelector('.nav-list ul')) - e.currentTarget.offsetHeight/2
+          e.currentTarget.style.top = this.elTop + "px"
+          this.isDrop = true
+          this.moveEl = e.currentTarget
+          this.moveOrder = order
+          this.moveIndex = inx
+        }
       },
       createEmptyEl(order){
         this.emptyEl = document.createElement('li')
@@ -89,27 +107,30 @@
         }
       },
       endDrop(e){
-        this.isDrop = false
-        this.moveEl.style.position = "static"
-        this.moveEl.style.order = this.moveOrder
-        document.querySelector('.nav-list ul').removeChild(this.emptyEl)
+        if(this.isDrop){
+          this.isDrop = false
+          this.moveEl.style.position = "static"
+          this.moveEl.style.order = this.moveOrder
+          document.querySelector('.nav-list ul').removeChild(this.emptyEl)
 
-        let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,childrens = parent.children
+          let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,childrens = parent.children
 
-        for(let i = 0;i<childrens.length;i++){
-          for(let j in this.list){
-            if(childrens[i].getAttribute("id")===this.list[j].id){
-              childrens[i].style.order = this.list[j].order
+          for(let i = 0;i<childrens.length;i++){
+            for(let j in this.list){
+              if(childrens[i].getAttribute("id")===this.list[j].id){
+                childrens[i].style.order = this.list[j].order
+              }
             }
           }
-        }
-        this.getElsTop()
-        
+          this.getElsTop()
+        } 
       },
     
       sideLink(id, index) {
-        this.toEl(2, this.elementMap[id]['top'])
-        this.choseIndex = index
+        if(!this.showMask){
+          this.toEl(2, this.elementMap[id]['top'])
+          this.choseIndex = index
+        }
       },
       onScroll(){
         const doc = document.body.scrollTop ? document.body : document.documentElement
@@ -178,8 +199,10 @@
     position: relative;
     background-color: #f6f9fa;
     border: 1px solid #e5e9ef;
+    border-bottom: 0;
     overflow: hidden;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     display: flex;
     flex-direction: column;
   }
@@ -199,7 +222,7 @@
     user-select: none;
   }
 
-  .nav-list ul li:hover {
+  .nav-list ul li:hover,.b-sort-wrapper:hover {
     background-color: #00a1d6;
     color: #fff;
   }
@@ -207,5 +230,56 @@
   .nav-list ul .on {
     background-color: #00a1d6;
     color: #fff;
+  }
+  .b-sort-wrapper{
+    height: 38px;
+    line-height: 20px;
+    padding: 8px 0;
+    border-top: 1px solid #e5e9ef;
+    transition: background-color .3s,color .3s;
+    background-color: #f6f9fa;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .sort-icon{
+    display: block;
+    margin: 0 auto 4px;
+    font-size: 18px;
+  }
+  .b-nav-bg{
+    right: -20px;
+    width: 200px;
+    opacity: 1;
+    top: -15px;
+    height: 100%;
+    padding-bottom: 20px;
+    position: absolute;
+    background: hsla(0,0%,100%,.8);
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
+    -o-transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
+    transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
+    z-index: -1;    
+  }
+  .b-nav-mask{
+    background: rgba(0,0,0,.3);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;   
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 </style>
