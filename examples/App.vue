@@ -79,6 +79,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 16px 30px;
+    margin-top: 30px;
   }
   .hljs-string {
     color: rgb(78, 50, 205);

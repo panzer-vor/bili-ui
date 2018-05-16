@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     onClick(){
-      this.$emit('iconClick')
+      this.$emit('icon-click')
     }
   }
 }

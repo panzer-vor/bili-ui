@@ -112,7 +112,7 @@ export default {
           n = i;
         }
       })
-      let total = this.maskVideo.img_x_len*this.maskVideo.img_y_len;
+      let total = this.maskVideo.img_x_len*this.maskVideo.img_y_len
       let ns = n%total
       this.videoImage = this.maskVideo.images[~~(n/total)]
       if(ns<this.maskVideo.img_x_len) this.videoPos = `${-ns*this.maskVideo.img_x_size}px 0`

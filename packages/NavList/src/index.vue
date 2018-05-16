@@ -1,16 +1,9 @@
 <template>
   <div class="nav-list" ref="navList" :style="styles">
-    <transition name="fade">
-      <div class="b-nav-mask" v-show="showMask" @click.stop="showMask=!showMask"></div>
-      <div class="b-nav-bg" v-show="showMask">
-          <slot></slot>
-      </div>
-    </transition>
-    <transition name="fade">
-        <div class="b-nav-bg" v-show="showMask">
-            <slot></slot>
-        </div>
-      </transition>
+    <div class="b-nav-mask" v-if="showMask" @click.stop="showMask=!showMask"></div>
+    <div class="b-nav-bg" v-if="showMask">
+        <slot></slot>
+    </div>
     <ul @mousemove="moveDrop">
       <li 
         v-for="(item,index) in list"
@@ -29,6 +22,10 @@
     <div class="b-sort-wrapper" @click="showMask=!showMask">
       <b-icon value="sort" klass="sort-icon"></b-icon>
       排序
+    </div>
+    <div class="s-line"></div>
+    <div class="back-to-top" @click="toEl(2,0)">
+      <b-icon value="top" ></b-icon>
     </div>
   </div>
 </template>
@@ -125,7 +122,6 @@
           this.getElsTop()
         } 
       },
-    
       sideLink(id, index) {
         if(!this.showMask){
           this.toEl(2, this.elementMap[id]['top'])
@@ -222,7 +218,7 @@
     user-select: none;
   }
 
-  .nav-list ul li:hover,.b-sort-wrapper:hover {
+  .nav-list ul li:hover,.b-sort-wrapper:hover,.back-to-top:hover {
     background-color: #00a1d6;
     color: #fff;
   }
@@ -241,7 +237,6 @@
     text-align: center;
     cursor: pointer;
     font-size: 14px;
-    border-radius: 4px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
@@ -250,10 +245,14 @@
     display: block;
     margin: 0 auto 4px;
     font-size: 18px;
+    color: #aaa;
+  }
+  .b-sort-wrapper:hover .sort-icon{
+    color: #fff;
   }
   .b-nav-bg{
     right: -20px;
-    width: 200px;
+    width: 0px;
     opacity: 1;
     top: -15px;
     height: 100%;
@@ -266,20 +265,61 @@
     -o-transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
     transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
     z-index: -1;    
+    animation: wither .3s 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes wither{
+    0%{
+      width: 0px;
+    }
+    80%{
+      width: 200px;
+    }
+    90%{
+      width: 190px;
+    }
+    100%{
+      width: 200px;
+    }
   }
   .b-nav-mask{
     background: rgba(0,0,0,.3);
     position: fixed;
-    width: 100vw;
+    width: 0;
     height: 100vh;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: -1;   
+    animation: wither-mask .2s 1;
+    animation-fill-mode: forwards;
   }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s;
+  @keyframes wither-mask{
+    from{
+      width: 0;
+    }
+    to{
+      width: 100vw;
+    }
   }
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
+  .s-line{
+    position: relative;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    height: 9px;
+    width: 30px;
+    margin: 0 auto;
+  }
+  .back-to-top{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 48px;
+    color: #aaa;
+    background-color: #f6f9fa;
+    overflow: hidden;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
   }
 </style>

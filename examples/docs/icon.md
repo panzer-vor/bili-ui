@@ -57,13 +57,13 @@
 ###### 组件点击事件
 
 <div class="demo-block">
-  <b-icon value="search" klass="f38" @iconClick="iconClick"></b-icon> 
+  <b-icon value="search" klass="f38" @icon-click="iconClick"></b-icon> 
 </div>
 
 ::: demo
 ```html
 <template>
-<b-icon value="search" @iconClick="iconClick"></b-icon> 
+<b-icon value="search" @icon-click="iconClick"></b-icon> 
 <template>
 ```
 ```javascript
@@ -79,7 +79,7 @@
 ```
 :::
 
-### 图标示例
+### 图标集
 <template>
   <ul class="icon-wrapper">
     <li class="icons" v-for="icon in icons">
@@ -171,6 +171,18 @@
   }
 </script>
 
+## API
+
+| 参数      | 说明          | 类型      | 可选值                      | 默认值       |
+|---------- |-------------- |---------- |-------------------------  |------------- |
+| value | icon的名称,不同的value,对应不同的icon | String | 见图标集 | — |
+| klass | icon添加class | String | — | — |
+
+## 事件
+
+| 事件名称      | 说明          | 返回值  |
+|---------- |-------------- |---------- |
+| icon-click | 点击事件 | - |
 
 
 

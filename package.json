@@ -1,8 +1,9 @@
 {
   "name": "bili-ui",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "vue2.x UI components most components-UI copied from www.bilibili.com",
   "author": "xyk0279 <xyk0279@qq.com>",
+  "main": "dist/bili-ui.js",
   "repository" : { 
     "type" : "git",
     "url" : "https://github.com/xyk0279/Bili-UI"
