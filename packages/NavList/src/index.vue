@@ -109,9 +109,7 @@
           this.moveEl.style.position = "static"
           this.moveEl.style.order = this.moveOrder
           document.querySelector('.nav-list ul').removeChild(this.emptyEl)
-
           let parent = document.querySelector(`#${this.list[this.moveIndex].id}`).parentNode,childrens = parent.children
-
           for(let i = 0;i<childrens.length;i++){
             for(let j in this.list){
               if(childrens[i].getAttribute("id")===this.list[j].id){
@@ -151,6 +149,7 @@
         }
       },
       toEl(rate, scrollTop) {
+        this.choseIndex = -1
         const doc = document.body.scrollTop ? document.body : document.documentElement
         let scrollNow = doc.scrollTop
         let top = () => {
