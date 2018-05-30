@@ -1,7 +1,7 @@
 # bili-ui (施工中......)
 
-> vue2.x UI components  
-> 模仿[B站](https://www.bilibili.com/)UI的vue组件库 [演示地址](https://xyk0279.github.io/bili-ui)
+> vue2.x UI components
+> 模仿[B站](https://www.bilibili.com/)UI的vue组件库 [演示地址](https://bili-ui.github.io)
 
 ## 安装
 
@@ -11,7 +11,7 @@
 yarn add biliui
 ```
 
-- npm 
+- npm
 
 ```bash
 npm install biliui --save

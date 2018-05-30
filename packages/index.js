@@ -6,11 +6,12 @@
 import BBlock from './Block/index'
 import BNavList from './NavList/index'
 import BIcon from './Icon/index'
-
+import BCarousel from './Carousel/index'
 const components = [
   BBlock,
   BNavList,
   BIcon,
+  BCarousel,
 ]
 
 const install = function(Vue) {

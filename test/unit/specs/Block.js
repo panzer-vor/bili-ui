@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import HelloWorld from '@/components/HelloWorld'
+import { mount } from 'vue-test-utils'
+import Block from '/packages/Block/src/index.vue'
 
-describe('HelloWorld.vue', () => {
+describe('Block.vue', () => {
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(HelloWorld)
-    const vm = new Constructor().$mount()
+    const vm = mount(Block)
     expect(vm.$el.querySelector('.hello h1').textContent)
       .toEqual('Welcome to Your Vue.js App')
   })

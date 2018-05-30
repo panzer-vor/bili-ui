@@ -16,5 +16,11 @@ export default [
     meta: {
       desc: 'SVG图标'
     }
+  },
+  {
+    name:'carousel',
+    meta: {
+      desc: '轮播图'
+    }
   }
 ]

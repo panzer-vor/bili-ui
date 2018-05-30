@@ -4,9 +4,9 @@
   "description": "vue2.x UI components most components-UI copied from www.bilibili.com",
   "author": "xyk0279 <xyk0279@qq.com>",
   "main": "dist/bili-ui.js",
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/xyk0279/Bili-UI"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xyk0279/Bili-UI"
   },
   "private": false,
   "license": "MIT",
@@ -63,6 +63,7 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
+    "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
