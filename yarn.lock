@@ -24,6 +24,12 @@
   version "0.0.30"
   resolved "http://registry.npm.taobao.org/@types/strip-json-comments/download/@types/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
+"@vue/test-utils@^1.0.0-beta.16":
+  version "1.0.0-beta.16"
+  resolved "https://registry.npmjs.org/@vue/test-utils/-/test-utils-1.0.0-beta.16.tgz#dcf7a30304391422e382b5f97db6eb9508112906"
+  dependencies:
+    lodash "^4.17.4"
+
 CSSselect@~0.4.0:
   version "0.4.1"
   resolved "http://registry.npm.taobao.org/CSSselect/download/CSSselect-0.4.1.tgz#f8ab7e1f8418ce63cda6eb7bd778a85d7ec492b2"
