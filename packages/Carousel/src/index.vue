@@ -2,7 +2,7 @@
   <div style="width: 440px;height: 220px;">
     <div class="b-carousel-box" ref="carouselBox">
       <ul class="b-carousel-wrapper">
-        <li :style="{width: boxWidth+'px'}"></li>
+        <li :style="{width: boxWidth+'px'}">111</li>
       </ul>
       <ul class="b-carousel-title"></ul>
     </div>
@@ -12,11 +12,11 @@
   export default {
     name: 'BCarousel',
     props: {
-      
+
     },
     data() {
       return {
-        boxWidth:0,  
+        boxWidth:0,
       }
     },
     mounted() {
@@ -24,9 +24,9 @@
 
     },
     methods: {
-      
-      
-      
+
+
+
     }
   }
 </script>
@@ -62,6 +62,6 @@
     line-height: 35px;
     font-size: 14px;
     background: linear-gradient(transparent,rgba(0,0,0,.5));
-    
+
   }
 </style>

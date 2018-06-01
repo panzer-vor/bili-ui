@@ -32,7 +32,6 @@
         image:"",
         bottomTitle:"",
         desc:null,
-        
       }
     },
     mounted(){
@@ -68,6 +67,7 @@
         card:'card',
         video:'video',
         image:'image',
+        videoTime: 90,
       }
     },
     mounted(){
@@ -107,7 +107,7 @@
 
 <div class="demo-block">
   <div style="width:160px;height:148px">
-    <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="video" :mask-video="maskVideo" @mask-hover="getMaskData">
+    <b-block :image="image" :bottom-title="bottomTitle" :desc="desc" :mask="video" :video-time="videoTime" :mask-video="maskVideo" @mask-hover="getMaskData">
     </b-block>
   </div>
 </div>

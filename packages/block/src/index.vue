@@ -1,10 +1,10 @@
 <template>
-    <div 
-      class="block" 
+    <div
+      class="block"
       :style="!bottomTitle?{'height':'100px'}:null"
       @mouseenter="createBarrage"
       @mousemove="startShow"
-      @mouseout="endShow"  
+      @mouseout="endShow"
     >
       <a :href="link">
         <div class="pic" ref="maskBox" :style="{'backgroundImage':`url(${lazyImg})`}">
@@ -22,7 +22,7 @@
             <div class="cover-preview-module" :style="{'backgroundImage':`url(${videoImage})`,'backgroundPosition':videoPos}">
             </div>
             <div class="video-mask"></div>
-            <span class="time">{{formatTime(time)}}</span>  
+            <span class="time">{{formatTime(time)}}</span>
             <div class="barrage-mode"></div>
           </div>
           <div class="image-mask" v-else="mask && mask === 'image'">
@@ -36,10 +36,9 @@
           <span v-html="desc.leftKeyword"></span>
           <span v-html="desc.rightKeyword"></span>
         </p>
-        
       </a>
-      
-      
+
+
     </div>
 </template>
 <script>
@@ -93,7 +92,7 @@ export default {
   },
   watch: {
     maskVideo(){
-      if(this.barrageNum) return 
+      if(this.barrageNum) return
       this.createBarrage()
     }
   },
@@ -141,10 +140,10 @@ export default {
       b.style.textShadow = '1px 1px 2px #001'
       b.style.transition = 'left 5s linear'
       document.querySelector('.barrage-mode').appendChild(b)
-     
+
       b.style.left = -(b.offsetWidth) +'px'
       this.barrageEls.push(b)
-      this.barrageNum++     
+      this.barrageNum++
     },
     endShow(){
       if(this.mask !== 'video' || !this.maskVideo) return
