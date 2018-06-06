@@ -8,4 +8,6 @@ BBlock.install = function (Vue) {
   Vue.component(BBlock.name, BBlock);
 };
 
+
+
 export default BBlock;

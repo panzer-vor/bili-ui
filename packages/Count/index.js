@@ -8,4 +8,7 @@ BCount.install = function (Vue) {
   Vue.component(BCount.name, BCount);
 };
 
+// module.exports = BCount
+
+
 export default BCount;
