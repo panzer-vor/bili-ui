@@ -25,6 +25,7 @@
 <div class="demo-block">
   <b-icon value="top" klass="f38 mr20"></b-icon>   <b-icon value="search" klass="f38 mr20"></b-icon>   <b-icon value="more" klass="f38 mr20"></b-icon>    
 </div> 
+
 <template>
 ```
 ```style
@@ -120,6 +121,9 @@
   .yellow{
     color:yellow
   }
+  .ccd0d7{
+    color:#ccd0d7;
+  }
   .icon-wrapper{
     display:flex;
     flex-wrap:wrap;
@@ -160,6 +164,8 @@
           'more',
           'shopcar-empty',
           'shopcar-fill',
+          'reduce',
+          'plus',
         ]
       }
     },

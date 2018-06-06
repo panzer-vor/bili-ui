@@ -6,4 +6,3 @@
 <div class="demo-block">
   <b-count></b-count>
 </div>
-

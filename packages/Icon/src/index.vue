@@ -33,11 +33,11 @@ export default {
 <style scoped>
   @font-face {
   font-family: 'iconfont';  /* project id 653599 */
-  src: url('//at.alicdn.com/t/font_653599_phdnltqtcfvfgvi.eot');
-  src: url('//at.alicdn.com/t/font_653599_phdnltqtcfvfgvi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_653599_phdnltqtcfvfgvi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_653599_phdnltqtcfvfgvi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_653599_phdnltqtcfvfgvi.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_653599_wekpqsxc25d0a4i.eot');
+  src: url('//at.alicdn.com/t/font_653599_wekpqsxc25d0a4i.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_653599_wekpqsxc25d0a4i.woff') format('woff'),
+  url('//at.alicdn.com/t/font_653599_wekpqsxc25d0a4i.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_653599_wekpqsxc25d0a4i.svg#iconfont') format('svg');
 }
   i{
     font-family:"iconfont" !important;
@@ -66,6 +66,12 @@ export default {
   }
   .b-shopcar-fill::after{
     content:"\e600"
+  }
+  .b-reduce::after{
+    content:"\e666"
+  }
+  .b-plus::after{
+    content:"\e603"
   }
 </style>
 

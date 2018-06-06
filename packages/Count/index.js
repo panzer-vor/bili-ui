@@ -1,6 +1,6 @@
 /**
- * @author ztj
- * Date: 17/11/9
+ * @author mt
+ * Date: 18/06/06
  */
 import BCount from './src/index.vue';
 
