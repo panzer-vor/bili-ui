@@ -4,7 +4,7 @@ import BNavList from './NavList/index'
 import BIcon from './Icon/index'
 import BCarousel from './Carousel/index'
 import BCount from './Count/index'
-import BSearch from './Search/index'
+import BS from './S/index'
 
 
   const components = [
@@ -13,7 +13,7 @@ import BSearch from './Search/index'
   BIcon,
   BCarousel,
   BCount,
-  BSearch,
+  BS,
   
   ]
 

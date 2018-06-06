@@ -47,14 +47,21 @@ export default B${v.dir}
 
 </style>
 `
+  const mdTemplate = `# ${v.dir}
+----
+### 基础用法
+
+<div class="demo-block">
+  <b-${v.name}></b-${v.name}>
+</div>
+`
   if(!fs.existsSync(path.join(__dirname,`../packages/${v.dir}`))) {
     key = true
-    createNewComponent(v.dir,singleComponentStr,vueTemplate)
+    createNewComponent(v,singleComponentStr,vueTemplate,mdTemplate)
   }
 })
 if(key) {
-  const indexTemplate = `
-  ${importStr}
+  const indexTemplate = `${importStr}
 
   const components = [
     ${componentsStr}
@@ -77,12 +84,14 @@ if(key) {
   fs.writeFileSync(path.join(__dirname,'../packages/index.js'),indexTemplate)
 }
 
-function createNewComponent(str,cTemplate,vTemplate) {
-  fs.mkdirSync(path.join(__dirname,`../packages/${str}`))
-  fs.createWriteStream(path.join(__dirname,`../packages/${str}/index.js`))
-  fs.mkdirSync(path.join(__dirname,`../packages/${str}/src`))
-  fs.createWriteStream(path.join(__dirname,`../packages/${str}/src/index.vue`))
-  fs.writeFileSync(path.join(__dirname,`../packages/${str}/index.js`),cTemplate)
-  fs.writeFileSync(path.join(__dirname,`../packages/${str}/src/index.vue`),vTemplate)
+function createNewComponent(str,cTemplate,vTemplate,mdTemplate) {
+  fs.mkdirSync(path.join(__dirname,`../packages/${str.dir}`))
+  fs.createWriteStream(path.join(__dirname,`../packages/${str.dir}/index.js`))
+  fs.createWriteStream(path.join(__dirname,`../examples/docs/${str.name}.md`))
+  fs.mkdirSync(path.join(__dirname,`../packages/${str.dir}/src`))
+  fs.createWriteStream(path.join(__dirname,`../packages/${str.dir}/src/index.vue`))
+  fs.writeFileSync(path.join(__dirname,`../packages/${str.dir}/index.js`),cTemplate)
+  fs.writeFileSync(path.join(__dirname,`../packages/${str.dir}/src/index.vue`),vTemplate)
+  fs.writeFileSync(path.join(__dirname,`../examples/docs/${str.name}.md`),mdTemplate)
 }
 
