@@ -8,6 +8,8 @@ import BNavList from './NavList/index'
 import BIcon from './Icon/index'
 import BCarousel from './Carousel/index'
 import BCount from './Count/index'
+// const BCount = require('./Count/index')
+
 const components = [
   BBlock,
   BNavList,

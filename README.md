@@ -8,19 +8,19 @@
 - yarn
 
 ```bash
-yarn add biliui
+yarn add bili-ui -S
 ```
 
 - npm
 
 ```bash
-npm install biliui --save
+npm install bili-ui --save
 ```
 
 ## 使用
 
 ```js
-import BiliUI from 'biliui' // 引入组件库
+import BiliUI from 'bili-ui' // 引入组件库
 
 Vue.use(BiliUI)
 ```
