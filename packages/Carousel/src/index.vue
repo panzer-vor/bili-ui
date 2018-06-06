@@ -66,7 +66,6 @@
     },
     mounted() {
       this.boxWidth = this.$refs.carouselBox.offsetWidth
-      console.log(this.boxWidth)
       this.autoplay()
     },
     methods: {

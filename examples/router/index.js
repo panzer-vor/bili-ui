@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import ComponentsRouters from './ComponentsRouters'
+import ComponentsRouters from '../nav.config.json'
 
 Vue.use(Router)
 let routes = [{
@@ -21,7 +20,7 @@ let addComponent = (router) => {
   })
 }
 
-addComponent(ComponentsRouters)
+addComponent(ComponentsRouters.Route)
 
 export default new Router({
   routes

@@ -11,22 +11,23 @@
       </dd>
     </dl>
   </div>
-  
+
 </template>
 
 <script>
-  import routerLinks from '../router/ComponentsRouters'
+  import ComponentsRouters from '../nav.config.json'
+  let componentsRouters = ComponentsRouters.Route
   export default {
     data () {
       return {
-        componentList:routerLinks
+        componentList: componentsRouters
       }
     },
-   
+
   }
 </script>
 
-<style scoped> 
+<style scoped>
   *{
     box-sizing: border-box;
   }

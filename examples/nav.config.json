@@ -1,0 +1,39 @@
+{
+  "Route":[
+    {
+      "name":"block",
+      "dir": "Block",
+      "meta": {
+        "desc": "基础展示块"
+      }
+    },
+    {
+      "name":"nav-list",
+      "dir": "NavList",
+      "meta": {
+        "desc": "侧边浮动导航"
+      }
+    },
+    {
+      "name":"icon",
+      "dir": "Icon",
+      "meta": {
+        "desc": "SVG图标"
+      }
+    },
+    {
+      "name":"carousel",
+      "dir": "Carousel",
+      "meta": {
+        "desc": "轮播图"
+      }
+    },
+    {
+      "name": "count",
+      "dir": "Count",
+      "meta": {
+        "desc": "计数"
+      }
+    }
+  ]
+}

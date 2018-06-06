@@ -1,10 +1,6 @@
-/**
- * @author xyk
- * Date: 17/11/9
- */
 import BIcon from './src/index.vue'
 
-BIcon.install = function (Vue) {
+BIcon.install = (Vue) => {
   Vue.component(BIcon.name, BIcon)
 }
 

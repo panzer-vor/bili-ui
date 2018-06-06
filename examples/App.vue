@@ -136,6 +136,15 @@
   section a{
     color: #00a1d6;
   }
+  section>h1{
+    margin: 1em 0;
+  }
+  section>h2{
+    margin: .7em 0;
+  }
+  section>h3{
+    margin: .5em 0;
+  }
   @media screen and (max-width:780px) {
     .slide-wrapper {
       transform: translateX(-256px);
