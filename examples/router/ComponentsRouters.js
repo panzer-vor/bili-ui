@@ -22,5 +22,11 @@ export default [
     meta: {
       desc: '轮播图'
     }
+  },
+  {
+    name: 'count',
+    meta: {
+      desc: '数量.......'
+    }
   }
 ]

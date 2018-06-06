@@ -4,7 +4,6 @@
     <main>
       <header v-if="!isIndex">{{$route.meta.desc}}</header>
       <div class="show-wrapper">
-        
         <router-view/>
       </div>
     </main>
@@ -56,7 +55,6 @@
   .hljs-name {
     color: violet;
   }
-  
   .demo-container{
     transition: all .3s;
     overflow: hidden;
@@ -133,7 +131,7 @@
     border-top: 1px solid #00a1d6;
     width: 200px;
     max-width: 30%;
-    
+
   }
   section a{
     color: #00a1d6;
