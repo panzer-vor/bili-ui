@@ -4,7 +4,7 @@
       <input type="text" v-bind:placeholder='placeholder' class="search-keyword" @click='open'>
       <button type="submit" class="search-submit"></button>
     </form>
-    
+
     <div class="search-history" v-if='historyItems.length && isAllow == true'>
       <div class="search-title">
           历史搜索
@@ -47,7 +47,7 @@
       },
       jump(index){
         var content = this.historyItems[index].content
-        console.log(content)
+        this.$emit('click',content)
       }
     }
   }

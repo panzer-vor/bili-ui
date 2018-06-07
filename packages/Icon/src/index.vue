@@ -19,7 +19,7 @@ export default {
   },
   methods:{
     onClick(){
-      this.$emit('icon-click')
+      this.$emit('icon-click','点击的值')
     }
   }
 }
