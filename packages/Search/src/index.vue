@@ -1,18 +1,18 @@
 <template>
   <div class="search">
     <form action="#" class="search-form">
-      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" @click='open'>
-      <button type="submit" class="search-submit"></button>
+      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' v-on:blur='close'>
+      <button type="submit" class="search-submit" @click='search'></button>
     </form>
 
     <div class="search-history" v-if='historyItems.length && isAllow == true'>
       <div class="search-title">
-          历史搜索
+        历史搜索
       </div>
       <ul>
         <li v-for='(item,index) in historyItems' :key='index'>
-          <a href="#" @click='jump(index)'>{{item.content}}</a>
-          <div class="cancel"></div>
+          <a href="#" @click='search'>{{item.content}}</a>
+          <div class="cancel" @click='cancel'></div>
         </li>
       </ul>
     </div>
@@ -45,9 +45,14 @@
       open(){
         this.isAllow = true
       },
-      jump(index){
-        var content = this.historyItems[index].content
-        this.$emit('click',content)
+      close(){
+        this.isAllow = false
+      },
+      search(){
+        this.$emit('search')
+      },
+      cancel(){
+        this.$emit('del')
       }
     }
   }

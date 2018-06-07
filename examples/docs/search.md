@@ -3,15 +3,18 @@
 ### 基础用法
 
 <div class="demo-block">
-  <b-search @click="clickParent"></b-search>
+  <b-search @search="searchParent" @del='delParent'></b-search>
 </div>
 
 <script>
   export default {
 
     methods:{
-      clickParent(v){
-        alert(v)
+      searchParent(){
+        console.log()
+      },
+      delParent(){
+        console.log()
       }
     }
   }
