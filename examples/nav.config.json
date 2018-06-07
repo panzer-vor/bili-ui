@@ -34,6 +34,13 @@
       "meta": {
         "desc": "计数"
       }
+    },
+    {
+      "name": "search",
+      "dir": "Search",
+      "meta": {
+        "desc": "搜索栏"
+      }
     }
   ]
 }
