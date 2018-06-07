@@ -24,7 +24,7 @@
     props: {
       maxNumber:{
         type:Number,
-        default:'999'
+        default:999
       },
     },
     data() {
