@@ -1,20 +1,16 @@
-
-  import BBlock from './Block/index'
+import BBlock from './Block/index'
 import BNavList from './NavList/index'
 import BIcon from './Icon/index'
 import BCarousel from './Carousel/index'
 import BCount from './Count/index'
-import BS from './S/index'
 
 
   const components = [
     BBlock,
-  BNavList,
-  BIcon,
-  BCarousel,
-  BCount,
-  BS,
-  
+    BNavList,
+    BIcon,
+    BCarousel,
+    BCount,
   ]
 
   const install = function(Vue) {
@@ -30,4 +26,3 @@ import BS from './S/index'
     install,
     ...components,
   }
-  

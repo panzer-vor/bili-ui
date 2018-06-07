@@ -7,16 +7,11 @@ export default {
     value: {
       type: String
     },
-    klass: {
-      type: String,
-      default: ''
-    },
   },
   render(h){
-    const {value, klass} = this
-    let c = klass.split(' ')
+    const {value} = this
     return h('i', {
-      class: [`b-${value}`,...[klass]],
+      class: [`b-${value}`],
       on:{
         '!click':this.onClick
       }
