@@ -41,6 +41,13 @@
       "meta": {
         "desc": "搜索栏"
       }
+    },
+    {
+      "name":"tabs",
+      "dir":"Tabs",
+      "meta":{
+        "desc":"搜索栏"
+      }
     }
   ]
 }
