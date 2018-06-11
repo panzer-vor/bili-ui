@@ -23,12 +23,11 @@
       }
     },
     mounted() {
-      
+
     },
     methods: {
       change(index){
         this.active = index
-        console.log(this.active)
       }
     }
   }

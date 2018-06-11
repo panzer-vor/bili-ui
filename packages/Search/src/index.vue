@@ -1,18 +1,18 @@
 <template>
   <div class="search">
     <form action="#" class="search-form">
-      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' v-on:blur='close'>
+      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' >
       <button type="submit" class="search-submit" @click='search'></button>
     </form>
 
-    <div class="search-history" v-if='historyItems.length && isAllow == true'>
+    <div class="search-history" v-if='historyItem.length && isAllow == true'>
       <div class="search-title">
         历史搜索
       </div>
       <ul>
-        <li v-for='(item,index) in historyItems' :key='index'>
+        <li v-for='(item,index) in historyItem' :key='index'>
           <a href="#" @click='search'>{{item.content}}</a>
-          <div class="cancel" @click='cancel'></div>
+          <div class="cancel" @click='cancel(index)'></div>
         </li>
       </ul>
     </div>
@@ -25,21 +25,39 @@
       placeholder:{
         type:String,
         default:'每个男人都想学的开车技术！（滑稽'
+      },
+      historyItems: {
+        tyle: Array,
+        default() {
+          return [
+            {content:'are you ok ?'},
+            {content:'i fine'},
+            {content:'thank you'},
+            {content:'and you ?'},
+          ]
+        }
       }
     },
     data() {
       return {
         isAllow:false,
-        historyItems:[
-          {content:'are you ok ?'},
-          {content:'i fine'},
-          {content:'thank you'},
-          {content:'and you ?'},
-        ]
+        historyItem:null
       }
     },
+    watch: {
+      historyItems(val) {
+        this.historyItem = val
+      }
+    },
+    created() {
+      this.historyItem = this.historyItems
+    },
     mounted() {
-
+      document.body.addEventListener('click',(e) => {
+        if(!document.querySelector('.search').contains(e.target)){
+          this.isAllow = false
+        }
+      })
     },
     methods: {
       open(){
@@ -51,7 +69,8 @@
       search(){
         this.$emit('search')
       },
-      cancel(){
+      cancel(index){
+        this.historyItem.splice(index,1)
         this.$emit('del')
       }
     }

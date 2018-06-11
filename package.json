@@ -8,6 +8,13 @@
     "type": "git",
     "url": "https://github.com/xyk0279/Bili-UI"
   },
+  "keywords": [
+    "bili",
+    "bilibili",
+    "b站",
+    "ui",
+    "vue"
+  ],
   "private": false,
   "license": "MIT",
   "scripts": {
