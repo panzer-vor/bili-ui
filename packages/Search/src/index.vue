@@ -4,7 +4,6 @@
       <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' >
       <button type="submit" class="search-submit" @click='search'></button>
     </form>
-
     <div class="search-history" v-if='historyItem.length && isAllow == true'>
       <div class="search-title">
         历史搜索
@@ -30,7 +29,7 @@
         type: Array,
         default() {
           return [
-            
+
           ]
         }
       }
@@ -50,16 +49,18 @@
       this.historyItem = this.historyItems
     },
     mounted() {
-      //监听点击，如果点击的地方不在‘search’ 则不显示history
-      document.body.addEventListener('click',(e) => {
-        if(document.querySelector('.search')){
-          if(!document.querySelector('.search').contains(e.target)){
-            this.isAllow = false
-          }
-        }
-      })
+
+      document.body.addEventListener('click',this.addClick)
+    },
+    destroyed() {
+      document.body.removeEventListener('click',this.addClick)
     },
     methods: {
+      addClick(e) {
+        if(!document.querySelector('.search').contains(e.target)){
+          this.isAllow = false
+        }
+      },
       open(){
         this.isAllow = true
       },

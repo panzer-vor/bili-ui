@@ -5,14 +5,14 @@
         <slot></slot>
     </div>
     <ul @mousemove="moveDrop">
-      <li 
+      <li
         v-for="(item,index) in list"
-        :key="index" 
+        :key="index"
         :data="item.order"
         :style="{
           order:item.order,
-        }"        
-        @click="sideLink(item.id,index)" 
+        }"
+        @click="sideLink(item.id,index)"
         :class="index===choseIndex?'on':null"
         @mousedown="startDrop($event,item.order,index)"
         @mouseup="endDrop"
@@ -20,7 +20,7 @@
       >{{item.name}}</li>
     </ul>
     <div class="b-sort-wrapper" @click="showMask=!showMask">
-      <b-icon value="sort" klass="sort-icon"></b-icon>
+      <b-icon value="sort" class="sort-icon"></b-icon>
       排序
     </div>
     <div class="s-line"></div>
@@ -99,7 +99,7 @@
             if(this.list[i].order === index){
               this.list[i].order = this.list[this.moveIndex].order
             }
-          } 
+          }
           this.list[this.moveIndex].order = this.moveOrder
         }
       },
@@ -118,11 +118,11 @@
             }
           }
           this.getElsTop()
-        } 
+        }
       },
       sideLink(id, index) {
         if(!this.showMask){
-          this.toEl(2, this.elementMap[id]['top'])
+          this.toEl(2, this.elementMap[id]['top'] - 200)
           this.choseIndex = index
         }
       },
@@ -239,7 +239,7 @@
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
-  
+
   .sort-icon{
     display: block;
     margin: 0 auto 4px;
@@ -263,7 +263,7 @@
     -webkit-transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
     -o-transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
     transition: all .3s cubic-bezier(.68,-.55,.27,1.55);
-    z-index: -1;    
+    z-index: -1;
     animation: wither .3s 1;
     animation-fill-mode: forwards;
   }
@@ -288,7 +288,7 @@
     height: 100vh;
     top: 0;
     right: 0;
-    z-index: -1;   
+    z-index: -1;
     animation: wither-mask .2s 1;
     animation-fill-mode: forwards;
   }
