@@ -24,16 +24,13 @@
     props: {
       placeholder:{
         type:String,
-        default:'每个男人都想学的开车技术！（滑稽'
+        default:'请输入内容'
       },
       historyItems: {
-        tyle: Array,
+        type: Array,
         default() {
           return [
-            {content:'are you ok ?'},
-            {content:'i fine'},
-            {content:'thank you'},
-            {content:'and you ?'},
+            
           ]
         }
       }
@@ -53,6 +50,7 @@
       this.historyItem = this.historyItems
     },
     mounted() {
+      //监听点击，如果点击的地方不在‘search’ 则不显示history
       document.body.addEventListener('click',(e) => {
         if(!document.querySelector('.search').contains(e.target)){
           this.isAllow = false
