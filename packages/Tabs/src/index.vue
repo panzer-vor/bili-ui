@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="tabs">
-      <div class="tabs-item" @click="change(index)" v-for="(item,index) in tabs" :class="index===active?'tabs-on':null">
+      <div class="tabs-item" @click="change(index)" v-for="(item,index) in tabs" :class="index === active ? 'tabs-on' : '' ">
         {{item.content}}
       </div>
     </div>

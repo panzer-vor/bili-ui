@@ -4,7 +4,6 @@
       <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' >
       <button type="submit" class="search-submit" @click='search'></button>
     </form>
-
     <div class="search-history" v-if='historyItem.length && isAllow == true'>
       <div class="search-title">
         历史搜索
@@ -24,16 +23,13 @@
     props: {
       placeholder:{
         type:String,
-        default:'每个男人都想学的开车技术！（滑稽'
+        default:'请输入内容'
       },
       historyItems: {
-        tyle: Array,
+        type: Array,
         default() {
           return [
-            {content:'are you ok ?'},
-            {content:'i fine'},
-            {content:'thank you'},
-            {content:'and you ?'},
+
           ]
         }
       }
