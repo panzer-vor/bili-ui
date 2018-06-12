@@ -16,8 +16,8 @@
     data() {
       return {
         tabs:[
-          {content:"有新动态"},
-          {content:"最新投稿"}
+          {id:"1",content:"有新动态"},
+          {id:"2",content:"最新投稿"}
         ],
         active:0,
       }

@@ -52,8 +52,10 @@
     mounted() {
       //监听点击，如果点击的地方不在‘search’ 则不显示history
       document.body.addEventListener('click',(e) => {
-        if(!document.querySelector('.search').contains(e.target)){
-          this.isAllow = false
+        if(document.querySelector('.search')){
+          if(!document.querySelector('.search').contains(e.target)){
+            this.isAllow = false
+          }
         }
       })
     },
