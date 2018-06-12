@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="tabs">
-      <div class="tabs-item" @click="change(index)" v-for="(item,index) in tabs">
+      <div class="tabs-item" @click="change(index)" v-for="(item,index) in tabs" :class="index===active?'tabs-on':null">
         {{item.content}}
       </div>
     </div>
@@ -10,7 +10,6 @@
 <script>
   export default {
     name: 'BTabs',
-    active:0,
     props: {
 
     },
@@ -19,7 +18,8 @@
         tabs:[
           {content:"有新动态"},
           {content:"最新投稿"}
-        ]
+        ],
+        active:0,
       }
     },
     mounted() {

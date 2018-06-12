@@ -53,13 +53,17 @@
       this.historyItem = this.historyItems
     },
     mounted() {
-      document.body.addEventListener('click',(e) => {
+      document.body.addEventListener('click',this.addClick)
+    },
+    destroyed() {
+      document.body.removeEventListener('click',this.addClick)
+    },
+    methods: {
+      addClick(e) {
         if(!document.querySelector('.search').contains(e.target)){
           this.isAllow = false
         }
-      })
-    },
-    methods: {
+      },
       open(){
         this.isAllow = true
       },
