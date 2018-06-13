@@ -1,8 +1,8 @@
 <template>
   <div class="search">
     <form action="#" class="search-form">
-      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' >
-      <button type="submit" class="search-submit" @click='search'></button>
+      <input type="text" v-bind:placeholder='placeholder' class="search-keyword" v-on:focus='open' v-model='val'>
+      <button class="search-submit" @click='search(val)'></button>
     </form>
     <div class="search-history" v-if='historyItem.length && isAllow == true'>
       <div class="search-title">
@@ -10,8 +10,8 @@
       </div>
       <ul>
         <li v-for='(item,index) in historyItem' :key='index'>
-          <a href="#" @click='search'>{{item.content}}</a>
-          <div class="cancel" @click='cancel(index)'></div>
+          <a href="javascript:;" @click='search(item)'>{{item}}</a>
+          <div class="cancel" @click='cancel(index,item)'></div>
         </li>
       </ul>
     </div>
@@ -27,15 +27,11 @@
       },
       historyItems: {
         type: Array,
-        default() {
-          return [
-
-          ]
-        }
       }
     },
     data() {
       return {
+        val: '',
         isAllow:false,
         historyItem:null
       }
@@ -49,7 +45,6 @@
       this.historyItem = this.historyItems
     },
     mounted() {
-
       document.body.addEventListener('click',this.addClick)
     },
     destroyed() {
@@ -67,12 +62,12 @@
       close(){
         this.isAllow = false
       },
-      search(){
-        this.$emit('search')
+      search(val){
+        this.$emit('search',val?val:'')
       },
-      cancel(index){
+      cancel(index,item){
         this.historyItem.splice(index,1)
-        this.$emit('del')
+        this.$emit('del',item)
       }
     }
   }

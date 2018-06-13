@@ -4,54 +4,35 @@
 
 
 <div class="demo-block">
-  <b-count></b-count>
+  <b-count :max-number='maxNumber' :baseNumber='baseNumber'></b-count>
 </div>
 
+<script>
+  export default {
+    data() {
+      return {
+        maxNumber: 3,
+        baseNumber: 1,
+      }
+    },
+  }
+</script>
 
 ::: demo
 ```html
-<template>
-  <div class="demo-block">
-    <b-count></b-count>
-  </div>
-<template>
+<div class="demo-block">
+  <b-count :max-number='maxNumber' :base-number='baseNumber'></b-count>
+</div>
 ```
 ```javascript
 <script>
   export default {
-    name: 'BCount',
-    props: {
-      maxNumber:{
-        type:Number,
-        default:999
-      },
-    },
     data() {
       return {
-        countNumber:1,
+        maxNumber: 3,
+        baseNumber: 1,
       }
     },
-    mounted() {
-
-    },
-    methods: {
-      plus:function(){
-        var max = this.maxNumber
-
-        if(this.countNumber < max ){
-          this.countNumber ++
-        }else{
-          this.countNumber = max
-        }
-      },
-      reduce:function(){
-        if( this.countNumber > 1 ){
-          this.countNumber -= 1
-        } else {
-          this.countNumber = 0
-        }
-      }
-    }
   }
 </script>
 ```
@@ -61,7 +42,9 @@
 
 | 参数      | 说明          | 类型      | 可选值                      | 默认值       |
 |---------- |-------------- |---------- |-------------------------  |------------- |
-| maxNumber | 计数器最大值 | Number | — | 999 |
+| max-number | 计数器最大值 | Number | — | 99 |
+| base-number | 计数器当前值 | Number | — | 1 |
+
 
 ## 事件
 

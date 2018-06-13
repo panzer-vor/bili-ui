@@ -1,7 +1,7 @@
 <template>
   <div class="ticket-count">
     <!-- 减号 -->
-    <div 
+    <div
       class="count-reduce-plus"
       @click = 'reduce'>
       <b-icon value="reduce" v-bind:class="countNumber > 0 ? 'f25d8e' : 'ccd0d7'"></b-icon>
@@ -11,7 +11,7 @@
       {{countNumber}}
     </div>
     <!-- 加号 -->
-    <div 
+    <div
       class="count-reduce-plus"
       @click = 'plus'>
       <b-icon value="plus" v-bind:class="countNumber >= maxNumber ? 'ccd0d7' : 'f25d8e'"></b-icon>
@@ -24,16 +24,20 @@
     props: {
       maxNumber:{
         type:Number,
-        default:999
+        default:99
       },
+      baseNumber: {
+        type:Number,
+        default:1
+      }
     },
     data() {
       return {
         countNumber:1,
       }
     },
-    mounted() {
-
+    created() {
+      this.countNumber = this.baseNumber
     },
     methods: {
       plus:function(){
@@ -44,6 +48,8 @@
         }else{
           this.countNumber = max
         }
+        this.$parent.baseNumber = this.countNumber
+        this.$emit('plus')
       },
       reduce:function(){
         if( this.countNumber > 1 ){
@@ -51,6 +57,8 @@
         } else {
           this.countNumber = 0
         }
+        this.$parent.baseNumber = this.countNumber
+        this.$emit('reduce')
       }
     }
   }

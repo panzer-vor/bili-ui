@@ -63,7 +63,7 @@
 |---------- |-------------- |---------- |-------------------------  |------------- |
 | baseStyle | 基础分页器样式(需要覆盖默认样式) | Object | — | {} |
 | activeStyle | 活动分页器样式 | Object | — | {backgroundColor:'red'} |
-| images | 图片和标题列表 | Object | {images.img:string,images.tit:string} | — |
+| images | 图片和标题列表 | Array | {img:string,tit:string} | — |
 | delay | 轮播间隔 | Number | — | 3000 |
 
 ## 事件

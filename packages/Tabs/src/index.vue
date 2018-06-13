@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="tabs">
-      <div class="tabs-item" @click="change(index)" v-for="(item,index) in tabs" :class="index === active ? 'tabs-on' : '' ">
+      <div class="tabs-item" @click="change(index,item.id)" v-for="(item,index) in tabs" :class="index === active ? 'tabs-on' : '' ">
         {{item.content}}
       </div>
     </div>
@@ -11,14 +11,12 @@
   export default {
     name: 'BTabs',
     props: {
-
+      tabs: {
+        type: Array
+      }
     },
     data() {
       return {
-        tabs:[
-          {id:"1",content:"有新动态"},
-          {id:"2",content:"最新投稿"}
-        ],
         active:0,
       }
     },
@@ -26,8 +24,9 @@
 
     },
     methods: {
-      change(index){
+      change(index,id){
         this.active = index
+        this.$emit('tabClick',id)
       }
     }
   }
