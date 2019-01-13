@@ -1,4 +1,4 @@
-# bili-ui (施工中......)
+# bili-ui（个人的组件库开发实验性项目）
 
 > vue2.x UI components
 > 模仿[B站](https://www.bilibili.com/)UI的vue组件库 [演示地址](https://bili-ui.github.io)
